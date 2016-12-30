@@ -1,0 +1,3 @@
+DEBUG - Hello Jc
+INFO - Hello Jc
+FATAL - This is not the error message

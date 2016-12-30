@@ -1,0 +1,18 @@
+{
+    "result": {
+        "name": "ABC",
+        "dob": "12-11-1958",
+        "issue_date": "01-11-2011",
+        "blood_group": "",
+        "father/husband": "BCD",
+        "address": "53/9 ASHOK NAGAR,Delhi 110018",
+        "cov_details": {
+            "LMV": "01-11-2011  DY.DIR.ZONAL OFFICE,NORTH WEST DISTRICT-II,ROHINI",
+            "MCWG": "01-11-2011  DY.DIR.ZONAL OFFICE,NORTH WEST DISTRICT-II,ROHINI"
+        },
+        "validity": {
+            "non-transport": "01-11-1958 to 31-10-1978",
+            "transport": ""
+        }
+    }
+}

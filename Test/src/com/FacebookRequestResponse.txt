@@ -1,0 +1,286 @@
+createCampaign
+*************************************************************************************
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/act_130164813/campaigns
+Content-Disposition: form-data; name="name"
+Java SDK Test Campaign
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Content-Disposition: form-data; name="objective"
+LINK_CLICKS
+----------------------------6044618907717051452--
+Response:
+{"id":"6065372935504"}
+========End of API Call========
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6065372935504/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"ACTIVE","created_time":"2016-12-20T15:24:57+0530","effective_status":"ACTIVE","id":"6065372935504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"1970-01-01T05:29:59+0530","status":"ACTIVE","updated_time":"2016-12-20T15:24:57+0530"}
+========End of API Call========
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"ACTIVE","created_time":"2016-12-20T15:24:57+0530","effective_status":"ACTIVE","id":"6065372935504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"1970-01-01T05:29:59+0530","status":"ACTIVE","updated_time":"2016-12-20T15:24:57+0530"}
+
+
+
+
+
+getCampaign
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6064569565904/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+========End of API Call========
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6064569565904/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+========End of API Call========
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+
+
+
+
+updateCampaign
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6064569565904/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+========End of API Call========
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/6064569565904/
+Content-Disposition: form-data; name="name"
+Updated Java SDK Test Campaign1
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+----------------------------1605505731324750896--
+Response:
+{"success":true}
+========End of API Call========
+[Warning] When parsing response, object is not consistent with JSON:
+[JSON]{"success":true}
+[Object]{}
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6064569565904/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+========End of API Call========
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+
+
+
+
+
+
+createAdSet
+*************************************************************************************
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/act_130164813/adsets
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="targeting"
+{"geo_locations":{"countries":["US"]}}
+Content-Disposition: form-data; name="bid_amount"
+100
+Content-Disposition: form-data; name="billing_event"
+IMPRESSIONS
+Content-Disposition: form-data; name="name"
+Java SDK Test AdSet
+Content-Disposition: form-data; name="daily_budget"
+100500
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Content-Disposition: form-data; name="campaign_id"
+6064750405304
+----------------------------7912928791273091933--
+Response:
+{"id":"6065373205304"}
+========End of API Call========
+
+
+
+
+getAdSet
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6065373205304/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cadset_schedule%2Cattribution_window_days%2Cbid_amount%2Cbid_info%2Cbilling_event%2Cbudget_remaining%2Ccampaign%2Ccampaign_id%2Cconfigured_status%2Ccreated_time%2Ccreative_sequence%2Cdaily_budget%2Ceffective_status%2Cend_time%2Cfrequency_cap%2Cfrequency_cap_reset_period%2Cfrequency_control_specs%2Cid%2Cis_autobid%2Cis_average_price_pacing%2Clifetime_budget%2Clifetime_frequency_cap%2Clifetime_imps%2Cname%2Coptimization_goal%2Cpacing_type%2Cpromoted_object%2Crecommendations%2Crecurring_budget_semantics%2Crf_prediction_id%2Crtb_flag%2Cstart_time%2Cstatus%2Ctargeting%2Ctime_based_ad_rotation_id_blocks%2Ctime_based_ad_rotation_intervals%2Cupdated_time%2Cuse_new_app_click
+Response:
+{"account_id":"130164813","bid_amount":100,"bid_info":{"ACTIONS":100},"billing_event":"IMPRESSIONS","budget_remaining":"35564","campaign":{"id":"6064750405304"},"campaign_id":"6064750405304","configured_status":"ACTIVE","created_time":"2016-12-20T15:30:25+0530","daily_budget":"100500","effective_status":"ACTIVE","frequency_cap_reset_period":0,"id":"6065373205304","is_autobid":false,"is_average_price_pacing":false,"lifetime_budget":"0","lifetime_imps":0,"name":"Java SDK Test AdSet","optimization_goal":"LINK_CLICKS","pacing_type":["standard"],"recommendations":[{"title":"Your Bid Is Low","message":"Your bid is low and won't get as many results as you might want. Consider increasing your bid. The suggested bid amount is \u20b9184.21-\u20b9286.01 for optimization goal LINK_CLICKS.","code":1942008,"importance":"HIGH","confidence":"HIGH","blame_field":"bid_amount"}],"recurring_budget_semantics":true,"rtb_flag":false,"start_time":"2016-12-20T15:30:25+0530","status":"ACTIVE","targeting":{"age_max":65,"age_min":18,"geo_locations":{"countries":["US"],"location_types":["home"]}},"updated_time":"2016-12-20T15:30:25+0530","use_new_app_click":false}
+========End of API Call========
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6065373205304/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cadset_schedule%2Cattribution_window_days%2Cbid_amount%2Cbid_info%2Cbilling_event%2Cbudget_remaining%2Ccampaign%2Ccampaign_id%2Cconfigured_status%2Ccreated_time%2Ccreative_sequence%2Cdaily_budget%2Ceffective_status%2Cend_time%2Cfrequency_cap%2Cfrequency_cap_reset_period%2Cfrequency_control_specs%2Cid%2Cis_autobid%2Cis_average_price_pacing%2Clifetime_budget%2Clifetime_frequency_cap%2Clifetime_imps%2Cname%2Coptimization_goal%2Cpacing_type%2Cpromoted_object%2Crecommendations%2Crecurring_budget_semantics%2Crf_prediction_id%2Crtb_flag%2Cstart_time%2Cstatus%2Ctargeting%2Ctime_based_ad_rotation_id_blocks%2Ctime_based_ad_rotation_intervals%2Cupdated_time%2Cuse_new_app_click
+Response:
+{"account_id":"130164813","bid_amount":100,"bid_info":{"ACTIONS":100},"billing_event":"IMPRESSIONS","budget_remaining":"35564","campaign":{"id":"6064750405304"},"campaign_id":"6064750405304","configured_status":"ACTIVE","created_time":"2016-12-20T15:30:25+0530","daily_budget":"100500","effective_status":"ACTIVE","frequency_cap_reset_period":0,"id":"6065373205304","is_autobid":false,"is_average_price_pacing":false,"lifetime_budget":"0","lifetime_imps":0,"name":"Java SDK Test AdSet","optimization_goal":"LINK_CLICKS","pacing_type":["standard"],"recommendations":[{"title":"Your Bid Is Low","message":"Your bid is low and won't get as many results as you might want. Consider increasing your bid. The suggested bid amount is \u20b9184.21-\u20b9286.01 for optimization goal LINK_CLICKS.","code":1942008,"importance":"HIGH","confidence":"HIGH","blame_field":"bid_amount"}],"recurring_budget_semantics":true,"rtb_flag":false,"start_time":"2016-12-20T15:30:25+0530","status":"ACTIVE","targeting":{"age_max":65,"age_min":18,"geo_locations":{"countries":["US"],"location_types":["home"]}},"updated_time":"2016-12-20T15:30:25+0530","use_new_app_click":false}
+========End of API Call========
+
+
+
+
+updateAdSet
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6065373205304/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cadset_schedule%2Cattribution_window_days%2Cbid_amount%2Cbid_info%2Cbilling_event%2Cbudget_remaining%2Ccampaign%2Ccampaign_id%2Cconfigured_status%2Ccreated_time%2Ccreative_sequence%2Cdaily_budget%2Ceffective_status%2Cend_time%2Cfrequency_cap%2Cfrequency_cap_reset_period%2Cfrequency_control_specs%2Cid%2Cis_autobid%2Cis_average_price_pacing%2Clifetime_budget%2Clifetime_frequency_cap%2Clifetime_imps%2Cname%2Coptimization_goal%2Cpacing_type%2Cpromoted_object%2Crecommendations%2Crecurring_budget_semantics%2Crf_prediction_id%2Crtb_flag%2Cstart_time%2Cstatus%2Ctargeting%2Ctime_based_ad_rotation_id_blocks%2Ctime_based_ad_rotation_intervals%2Cupdated_time%2Cuse_new_app_click
+Response:
+{"account_id":"130164813","bid_amount":100,"bid_info":{"ACTIONS":100},"billing_event":"IMPRESSIONS","budget_remaining":"35564","campaign":{"id":"6064750405304"},"campaign_id":"6064750405304","configured_status":"ACTIVE","created_time":"2016-12-20T15:30:25+0530","daily_budget":"100500","effective_status":"ACTIVE","frequency_cap_reset_period":0,"id":"6065373205304","is_autobid":false,"is_average_price_pacing":false,"lifetime_budget":"0","lifetime_imps":0,"name":"Java SDK Test AdSet","optimization_goal":"LINK_CLICKS","pacing_type":["standard"],"recommendations":[{"title":"Your Bid Is Low","message":"Your bid is low and won't get as many results as you might want. Consider increasing your bid. The suggested bid amount is \u20b9184.21-\u20b9286.01 for optimization goal LINK_CLICKS.","code":1942008,"importance":"HIGH","confidence":"HIGH","blame_field":"bid_amount"}],"recurring_budget_semantics":true,"rtb_flag":false,"start_time":"2016-12-20T15:30:25+0530","status":"ACTIVE","targeting":{"age_max":65,"age_min":18,"geo_locations":{"countries":["US"],"location_types":["home"]}},"updated_time":"2016-12-20T15:30:25+0530","use_new_app_click":false}
+========End of API Call========
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/6065373205304/
+Content-Disposition: form-data; name="name"
+Update_Ad_Set_name1
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+----------------------------5735142126645123767--
+Response:
+{"success":true}
+========End of API Call========
+[Warning] When parsing response, object is not consistent with JSON:
+[JSON]{"success":true}
+[Object]{}
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6065373205304/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cadset_schedule%2Cattribution_window_days%2Cbid_amount%2Cbid_info%2Cbilling_event%2Cbudget_remaining%2Ccampaign%2Ccampaign_id%2Cconfigured_status%2Ccreated_time%2Ccreative_sequence%2Cdaily_budget%2Ceffective_status%2Cend_time%2Cfrequency_cap%2Cfrequency_cap_reset_period%2Cfrequency_control_specs%2Cid%2Cis_autobid%2Cis_average_price_pacing%2Clifetime_budget%2Clifetime_frequency_cap%2Clifetime_imps%2Cname%2Coptimization_goal%2Cpacing_type%2Cpromoted_object%2Crecommendations%2Crecurring_budget_semantics%2Crf_prediction_id%2Crtb_flag%2Cstart_time%2Cstatus%2Ctargeting%2Ctime_based_ad_rotation_id_blocks%2Ctime_based_ad_rotation_intervals%2Cupdated_time%2Cuse_new_app_click
+Response:
+{"account_id":"130164813","bid_amount":100,"bid_info":{"ACTIONS":100},"billing_event":"IMPRESSIONS","budget_remaining":"35564","campaign":{"id":"6064750405304"},"campaign_id":"6064750405304","configured_status":"ACTIVE","created_time":"2016-12-20T15:30:25+0530","daily_budget":"100500","effective_status":"ACTIVE","frequency_cap_reset_period":0,"id":"6065373205304","is_autobid":false,"is_average_price_pacing":false,"lifetime_budget":"0","lifetime_imps":0,"name":"Update_Ad_Set_name1","optimization_goal":"LINK_CLICKS","pacing_type":["standard"],"recommendations":[{"title":"Your Bid Is Low","message":"Your bid is low and won't get as many results as you might want. Consider increasing your bid. The suggested bid amount is \u20b9184.21-\u20b9286.01 for optimization goal LINK_CLICKS.","code":1942008,"importance":"HIGH","confidence":"HIGH","blame_field":"bid_amount"}],"recurring_budget_semantics":true,"rtb_flag":false,"start_time":"2016-12-20T15:30:25+0530","status":"ACTIVE","targeting":{"age_max":65,"age_min":18,"geo_locations":{"countries":["US"],"location_types":["home"]}},"updated_time":"2016-12-20T15:38:38+0530","use_new_app_click":false}
+========End of API Call========
+{"account_id":"130164813","bid_amount":100,"bid_info":{"ACTIONS":100},"billing_event":"IMPRESSIONS","budget_remaining":"35564","campaign":{"id":"6064750405304"},"campaign_id":"6064750405304","configured_status":"ACTIVE","created_time":"2016-12-20T15:30:25+0530","daily_budget":"100500","effective_status":"ACTIVE","frequency_cap_reset_period":0,"id":"6065373205304","is_autobid":false,"is_average_price_pacing":false,"lifetime_budget":"0","lifetime_imps":0,"name":"Update_Ad_Set_name1","optimization_goal":"LINK_CLICKS","pacing_type":["standard"],"recommendations":[{"title":"Your Bid Is Low","message":"Your bid is low and won't get as many results as you might want. Consider increasing your bid. The suggested bid amount is \u20b9184.21-\u20b9286.01 for optimization goal LINK_CLICKS.","code":1942008,"importance":"HIGH","confidence":"HIGH","blame_field":"bid_amount"}],"recurring_budget_semantics":true,"rtb_flag":false,"start_time":"2016-12-20T15:30:25+0530","status":"ACTIVE","targeting":{"age_max":65,"age_min":18,"geo_locations":{"countries":["US"],"location_types":["home"]}},"updated_time":"2016-12-20T15:38:38+0530","use_new_app_click":false}
+
+
+
+
+*******************************Complete Create Ad Starts*******************************
+
+createAdImage
+*************************************************************************************
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/act_130164813/adimages
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Content-Disposition: form-data; name="file"; filename="320x50.jpg"
+Content-Type: image/jpeg
+-----------------------------938196296432032764--
+Response:
+{"images":{"320x50.jpg":{"hash":"de63b2e58ce66e4f94038396fb37dda5","url":"https:\/\/scontent.xx.fbcdn.net\/t45.1600-4\/15409370_6064692553704_6551403939198140416_n.png"}}}
+========End of API Call========
+
+
+
+
+
+createAdCreative
+*************************************************************************************
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/act_130164813/adcreatives
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="image_hash"
+de63b2e58ce66e4f94038396fb37dda5
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Content-Disposition: form-data; name="object_url"
+www.inmobi.com
+Content-Disposition: form-data; name="title"
+Java SDK Test Creative
+Content-Disposition: form-data; name="body"
+Java SDK Test Creative
+----------------------------2552405581268429754--
+Response:
+{"id":"6064747541104"}
+========End of API Call========
+
+
+
+
+
+createAd
+*************************************************************************************
+========Start of API Call========
+Post: https://graph.facebook.com/v2.8/act_130164813/ads
+Content-Disposition: form-data; name="name"
+Java SDK Test ad
+Content-Disposition: form-data; name="adset_id"
+6064716077704
+Content-Disposition: form-data; name="access_token"
+EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD
+Content-Disposition: form-data; name="appsecret_proof"
+0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Content-Disposition: form-data; name="creative"
+{"id":"6064747541104","creative_id":"6064747541104"}
+Content-Disposition: form-data; name="status"
+PAUSED
+----------------------------3886590162806397723--
+
+*******************************Complete Create Ad End*******************************
+
+
+
+
+
+
+getAds
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/act_130164813/ads?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Response:
+{"data":[]}
+========End of API Call========
+
+
+
+
+
+
+
+getAdSetForCampaign
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6064569565904/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"DELETED","created_time":"2016-12-06T16:27:19+0530","effective_status":"DELETED","id":"6064569565904","name":"Updated Java SDK Test Campaign1","objective":"LINK_CLICKS","spend_cap":"10000","start_time":"1970-01-01T05:29:59+0530","status":"DELETED","updated_time":"2016-12-19T14:57:38+0530"}
+========End of API Call========
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/6064569565904/adsets?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+Response:
+{"data":[]}
+========End of API Call========
+
+
+
+
+
+
+
+
+
+getCampaignsNextPage
+*************************************************************************************
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/act_130164813/campaigns?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"data":[{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"ACTIVE","created_time":"2016-12-20T15:24:57+0530","effective_status":"ACTIVE","id":"6065372935504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"1970-01-01T05:29:59+0530","status":"ACTIVE","updated_time":"2016-12-20T15:24:57+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"ACTIVE","created_time":"2016-12-20T15:22:59+0530","effective_status":"ACTIVE","id":"6065372878104","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"1970-01-01T05:29:59+0530","status":"ACTIVE","updated_time":"2016-12-20T15:22:59+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"ACTIVE","created_time":"2016-12-09T14:33:58+0530","effective_status":"ACTIVE","id":"6064750405304","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-09T14:45:53+0530","status":"ACTIVE","updated_time":"2016-12-09T14:33:58+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:31:47+0530","effective_status":"PAUSED","id":"6064716073104","name":"Java SDK Test Campaign","objective":"EXTERNAL","start_time":"2016-12-08T23:31:48+0530","status":"PAUSED","updated_time":"2016-12-08T23:31:47+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:31:23+0530","effective_status":"PAUSED","id":"6064716046504","name":"Java SDK Test Campaign","objective":"EXTERNAL","start_time":"2016-12-08T23:31:24+0530","status":"PAUSED","updated_time":"2016-12-08T23:31:23+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:30:46+0530","effective_status":"PAUSED","id":"6064716018504","name":"Java SDK Test Campaign","objective":"EXTERNAL","start_time":"1970-01-01T05:29:59+0530","status":"PAUSED","updated_time":"2016-12-08T23:30:46+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:28:42+0530","effective_status":"PAUSED","id":"6064715872504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-08T23:28:43+0530","status":"PAUSED","updated_time":"2016-12-08T23:28:42+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:28:18+0530","effective_status":"PAUSED","id":"6064715842504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-08T23:28:19+0530","status":"PAUSED","updated_time":"2016-12-08T23:28:18+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:27:26+0530","effective_status":"PAUSED","id":"6064715803504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-08T23:27:27+0530","status":"PAUSED","updated_time":"2016-12-08T23:27:26+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T23:06:59+0530","effective_status":"PAUSED","id":"6064714823104","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-08T23:07:00+0530","status":"PAUSED","updated_time":"2016-12-08T23:06:59+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T22:54:48+0530","effective_status":"PAUSED","id":"6064714237504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-08T22:54:49+0530","status":"PAUSED","updated_time":"2016-12-08T22:54:48+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T22:53:29+0530","effective_status":"PAUSED","id":"6064714176504","name":"Java SDK Test Campaign","objective":"LINK_CLICKS","start_time":"1970-01-01T05:29:59+0530","status":"PAUSED","updated_time":"2016-12-08T22:53:29+0530"},{"account_id":"130164813","budget_rebalance_flag":false,"buying_type":"AUCTION","can_use_spend_cap":true,"configured_status":"PAUSED","created_time":"2016-12-08T18:08:13+0530","effective_status":"PAUSED","id":"6064700077904","name":"Java SDK Batch Test Campaign","objective":"LINK_CLICKS","start_time":"2016-12-08T18:08:13+0530","status":"PAUSED","updated_time":"2016-12-08T18:08:13+0530"}],"paging":{"cursors":{"before":"NjA2NTM3MjkzNTUwNAZDZD","after":"NjA2NDcwMDA3NzkwNAZDZD"}}}
+========End of API Call========
+========Start of API Call========
+Request:
+GET: https://graph.facebook.com/v2.8/act_130164813/campaigns?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&after=NjA2NDcwMDA3NzkwNAZDZD&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+Response:
+{"data":[]}
+========End of API Call========
