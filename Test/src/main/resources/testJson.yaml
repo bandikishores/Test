@@ -1,0 +1,5 @@
+
+##Nested Yaml Test
+name: true
+test: someName
+list: [str1,str2,str3]
