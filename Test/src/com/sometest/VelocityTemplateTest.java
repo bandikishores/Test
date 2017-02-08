@@ -16,6 +16,7 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.app.event.EventCartridge;
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
 import org.apache.velocity.runtime.resource.loader.StringResourceLoader;
 import org.apache.velocity.runtime.resource.util.StringResourceRepository;
@@ -51,29 +52,29 @@ class VelocityTypeHandler implements ReferenceInsertionEventHandler {
 }
 
 
-class AuditVelocityTools {
-
-    private final JexlEngine jEngine = new JexlEngine();
-
-    @SuppressWarnings({ "rawtypes", "unchecked"})
-    public Collection map(Collection src, String objPath) {
-        Collection output = new ArrayList();
-        JexlContext jCtx = new MapContext();
-        for (Object obj : src) {
-            String evalExpr = "arg." + objPath;
-            org.apache.commons.jexl2.Expression el =
-                    (org.apache.commons.jexl2.Expression) jEngine.createExpression(evalExpr);
-            jCtx.set("arg", obj);
-            output.add(((org.apache.commons.jexl2.Expression) el).evaluate(jCtx));
-        }
-        return output;
-    }
-
-}
-
-
 
 public class VelocityTemplateTest {
+
+
+    public static class AuditVelocityTools {
+
+        private final JexlEngine jEngine = new JexlEngine();
+
+        @SuppressWarnings({ "rawtypes", "unchecked"})
+        public Collection map(Collection src, String objPath) {
+            Collection output = new ArrayList();
+            JexlContext jCtx = new MapContext();
+            for (Object obj : src) {
+                String evalExpr = "arg." + objPath;
+                org.apache.commons.jexl2.Expression el =
+                        (org.apache.commons.jexl2.Expression) jEngine.createExpression(evalExpr);
+                jCtx.set("arg", obj);
+                output.add(((org.apache.commons.jexl2.Expression) el).evaluate(jCtx));
+            }
+            return output;
+        }
+
+    }
 
     @Data
     @NoArgsConstructor
@@ -98,27 +99,29 @@ public class VelocityTemplateTest {
 
     private static void velocityEvaluate() {
         String query =
-                "select * from iam_user_view where email_id = ${args[0].emailId} and $auditTool.map($args[2],\"emailId\")";
+                "select * from iam_user_view where email_id = ${args[0].emailId} and id in ( $args[2] ) and email_id in ($auditTool.map($args[1],\"emailId\"))";
+
         Test test = new Test();
         test.setEmailId("kishore.bandi@inmobi.com");
         test.setName("Kishore");
 
         List<Test> list = Arrays.asList(test);
 
-        Object[] args1 = { test, "SomeString", list};
+        List<Integer> numList = Arrays.asList(1, 2, 3);
+
+        Object[] args1 = { test, list, numList};
         VelocityContext vCtx = new VelocityContext();
         vCtx.put("args", args1);
         vCtx.put("auditTool", new AuditVelocityTools());
-        /* EventCartridge vec = new EventCartridge();
+        EventCartridge vec = new EventCartridge();
         vec.addEventHandler(new VelocityTypeHandler());
-        vec.attachToContext(vCtx);*/
+        vec.attachToContext(vCtx);
         Writer out = new StringWriter();
-        VelocityEngine engine = new VelocityEngine();
 
-        engine.setProperty(Velocity.RESOURCE_LOADER, "string");
+        /*engine.setProperty(Velocity.RESOURCE_LOADER, "string");
         engine.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
         engine.addProperty("string.resource.loader.repository.static", "false");
-        engine.init();
+        engine.init();*/
 
         // engine.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
         new VelocityEngine().evaluate(vCtx, out, "ERR:", new StringReader(query));

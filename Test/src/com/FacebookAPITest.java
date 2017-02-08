@@ -59,10 +59,26 @@ public class FacebookAPITest {
         Gson gson = new GsonBuilder().create();
 
         if (true) {
+        	
+        	
+        	/*
+GET: https://graph.facebook.com/v2.8/act_130164813/adsetsbylabels?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&ad_label_ids=abcd&fields=account_id%2Cadlabels
+
+        	 */
+        	
+        	
+        	account.getAdSetsByLabels().requestAccountIdField().requestAdlabelsField().setAdLabelIds("abcd").execute();
+        	
+        	if(true){
+        		return;
+        	}
+        	
             AdCreative creative = account.createAdCreative().setTitle("Java SDK Test Creative")
                     .setBody("Java SDK Test Creative").setImageHash("de63b2e58ce66e4f94038396fb37dda5")
                     // .setLinkUrl("www.facebook.com")
                     .setObjectUrl("www.inmobi.com").execute();
+            
+            
 
 
             APINode ad = account.createAdVideo().setName("Java SDK Test ad")
@@ -88,6 +104,10 @@ public class FacebookAPITest {
         }
         if (false) {
             getAdSet(account, context);
+            return;
+        }
+        if(false) {
+            getAllAdSet(account, context);
             return;
         }
         if (false) {
@@ -130,12 +150,13 @@ public class FacebookAPITest {
             createAll(account, context);
             return;
         }
-        if (false) {
+        if (true) {
             createAd(account, context);
             return;
         }
         if (true) {
             copyCampaign(account, context);
+            return;
         }
     }
 
@@ -159,6 +180,15 @@ public class FacebookAPITest {
 
 
 
+    private static void getAllAdSet(AdAccount account, APIContext context) throws APIException {
+        
+        /*
+         https://graph.facebook.com/v2.8/6064569565904/adsets?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94
+         */
+        Campaign campaign = Campaign.fetchById("6064569565904", context);
+        campaign.getAdSets().execute();
+    }
+
     private static void getAdSet(AdAccount account, APIContext context) throws APIException {
         AdSet adSet = AdSet.fetchById(6065373205304L, context);
         adSet.fetch();
@@ -167,6 +197,15 @@ public class FacebookAPITest {
 
 
     private static void createAdSet(AdAccount account, APIContext context) throws APIException {
+        /*
+         Post: https://graph.facebook.com/v2.8/act_130164813/adsets
+         Content-Disposition: form-data; name="access_token"
+         Content-Disposition: form-data; name="targeting"; value="{"geo_locations":{"countries":["US"]}}"
+         Content-Disposition: form-data; name="bid_amount"; value=100
+         Content-Disposition: form-data; name="name"; value="Java SDK Test AdSet"
+         Content-Disposition: form-data; name="campaign_id"; value="6064750405304"
+         ...
+         */
         AdSet adset = account.createAdSet().setName("Java SDK Test AdSet").setCampaignId("6064750405304")
                 .setBillingEvent(AdSet.EnumBillingEvent.VALUE_IMPRESSIONS).setDailyBudget(100500L).setBidAmount(100L)
                 .setTargeting(targeting).execute();
@@ -189,8 +228,9 @@ public class FacebookAPITest {
 
 
         Ad ad = account.createAd().setName("Java SDK Test ad").setAdsetId(6064716077704L).setCreative(creative)
-                .setStatus(EnumStatus.VALUE_PAUSED).execute();
+                .setStatus(EnumStatus.VALUE_PAUSED).addUploadFile("myuploadtest", new File("/home/kishore/Pictures/Ads/640*100.jpg")).execute();
         System.out.println("Creation done!");
+        System.out.println(ad);
 
         // Output : {"error":{"message":"Invalid
         // parameter","type":"OAuthException","code":100,"error_data":{"blame_field_specs":[["account_id"]]},"error_subcode":1359101,"is_transient":false,"error_user_title":"Add
@@ -288,6 +328,16 @@ public class FacebookAPITest {
 
     private static void batchInsert(AdAccount account, APIContext context) throws APIException {
 
+        /*
+         Post: https://graph.facebook.com/
+         Content-Disposition: form-data; name="access_token"; value="EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD"
+         
+         Content-Disposition: form-data; name="batch"; value=
+                                 [{"method":"POST","relative_url":"v2.8/act_130164813/campaigns","name":"campaignRequest","body":"name=Java+SDK+Batch+Test+Campaign&objective=LINK_CLICKS&status=PAUSED","attached_files":{}},{"method":"POST","relative_url":"v2.8/act_130164813/adsets","name":"adsetRequest","body":"optimization_goal=IMPRESSIONS&targeting=%7B%22geo_locations%22%3A%7B%22countries%22%3A%5B%22US%22%5D%7D%7D&bid_amount=100&billing_event=IMPRESSIONS&name=Java+SDK+Batch+Test+AdSet&daily_budget=1000000&campaign_id=%7Bresult%3DcampaignRequest%3A%24.id%7D&status=PAUSED","attached_files":{}},{"method":"POST","relative_url":"v2.8/act_130164813/adimages","name":"imageRequest","body":"","attached_files":{"File0":"file"}},{"method":"POST","relative_url":"v2.8/act_130164813/adcreatives","name":"creativeRequest","body":"image_hash=%7Bresult%3DimageRequest%3A%24.images.*.hash%7D&link_url=www.facebook.com&object_url=www.facebook.com&title=Java+SDK+Batch+Test+Creative&body=Java+SDK+Batch+Test+Creative","attached_files":{}},{"method":"POST","relative_url":"v2.8/act_130164813/ads","name":"Request4","body":"name=Java+SDK+Batch+Test+ad&adset_id=%7Bresult%3DadsetRequest%3A%24.id%7D&bid_amount=100&creative=%7Bcreative_id%3A%7Bresult%3DcreativeRequest%3A%24.id%7D%7D&status=PAUSED","attached_files":{}}]
+                                 
+         Content-Disposition: form-data; name="File0"; filename="320x50.jpg"
+         Content-Type: image/jpeg
+         */
 
         // Creation of Ad
         BatchRequest batch = new BatchRequest(context);
@@ -365,6 +415,9 @@ public class FacebookAPITest {
     }
 
     private static void getAllCampaigns(AdAccount account) throws APIException {
+        
+        // https://graph.facebook.com/v2.8/act_130164813/campaigns?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+        
         APINodeList<Campaign> campaigns = account.getCampaigns().requestAllFields().execute();
         for (Campaign campaign : campaigns) {
             System.out.println(campaign.fetch().getRawResponse());
@@ -398,6 +451,9 @@ public class FacebookAPITest {
           
           OR
          */
+        
+        // https://graph.facebook.com/v2.8/6064569565904/?access_token=EAARJb5yAvC4BAJcgqJlxpzSbf1h6Bidx0PdbstwwrDnJD0gLHt3wFFLF37JonPkrZAUdGdZC82Uu4Xhhi9yk7yZBPCcJRe8tHtwadxkziQ8MiRLxc9KVf7gGra9lgCXxPexmbFJEnWHLm4SS3AQt5eZAaFDxwKoZD&appsecret_proof=0775c1b82bc65115265df6e6a71451612d083cdff444edfe312045024a83dd94&fields=account_id%2Cadlabels%2Cbudget_rebalance_flag%2Cbuying_type%2Ccan_use_spend_cap%2Cconfigured_status%2Ccreated_time%2Ceffective_status%2Cid%2Cname%2Cobjective%2Crecommendations%2Cspend_cap%2Cstart_time%2Cstatus%2Cstop_time%2Cupdated_time
+        
         Campaign campaign = Campaign.fetchById("6064569565904", context);
         System.out.println(campaign.fetch().getRawResponse());
 

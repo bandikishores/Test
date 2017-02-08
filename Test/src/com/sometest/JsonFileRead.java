@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -18,10 +21,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.sun.jna.platform.win32.OaIdl.DATE;
 
 import lombok.Data;
 
@@ -44,9 +53,10 @@ class BooleanTypeAdapter extends TypeAdapter<Boolean> {
 
 @Data
 class JsonTestClass {
-    Boolean      name = new Boolean(true);
-    String       test = "str";
-    List<String> list = Arrays.asList("some");
+    Boolean active = new Boolean(true);
+    Integer id;
+    // String test = "str";
+    // List<String> list = Arrays.asList("some");
 }
 
 
@@ -62,8 +72,46 @@ public class JsonFileRead {
         String str = mapper.writeValueAsString(new JsonTestClass());
         System.out.println(str);
         System.out.println(mapper.readValue(str, JsonTestClass.class));
+
+        String date = "2017-01-18T07:20:00Z";
+        Date readDate = mapper.readValue(date, Date.class);
+        System.out.println(date);
+    }
+    
+    static class BooleanTypeAdapter implements JsonDeserializer<Boolean> {
+        @Override
+        public Boolean deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            JsonPrimitive jsonPrimitive = json.getAsJsonPrimitive();
+            if (jsonPrimitive.isBoolean()) {
+                return jsonPrimitive.getAsBoolean();
+            } else {
+                return jsonPrimitive.getAsInt() == 0 ? false : true;
+            }
+        }
     }
 
+    // mainTemp
+    public static void mainTemp(String[] args) throws FileNotFoundException, IOException {
+        
+        
+        Map<String,String> map = new HashMap<>();
+        map.put("a", "b");
+        map.put("a2", "b4");
+        map.put("1", "b3");
+        map.put("23", "b5");
+        System.out.println(new GsonBuilder().create().toJson(map));
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Boolean.class, new BooleanTypeAdapter()).create();
+
+
+
+        System.out.println(gson.fromJson("{id:12345,active:1}", JsonTestClass.class).getActive());
+        System.out.println(gson.fromJson("{id:12345,active:0}", JsonTestClass.class).getActive());
+        System.out.println(gson.fromJson("{id:12345,active:false}", JsonTestClass.class).getActive());
+        System.out.println(gson.fromJson("{id:12345,active:true}", JsonTestClass.class).getActive());
+    }
 
     // Temp Json - TempJsonGson
     public static void TempJsonGson(String[] args) throws FileNotFoundException, IOException {
@@ -104,7 +152,7 @@ public class JsonFileRead {
     }
 
     // File Read Json Object Mapper - FileReadJsonJackson
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void FileReadJsonJackson(String[] args) throws FileNotFoundException, IOException {
 
         // String json = IOUtils.toString(new
         // InputStreamReader(JsonFileRead.class.getResourceAsStream("testJson.txt")));

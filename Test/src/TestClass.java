@@ -1,21 +1,23 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.UncheckedIOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -26,13 +28,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
@@ -41,6 +42,7 @@ import org.apache.commons.jexl2.JexlContext;
 import org.apache.commons.jexl2.JexlEngine;
 import org.apache.commons.jexl2.MapContext;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -74,6 +76,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Since;
+import com.google.gson.annotations.Until;
 import com.google.gson.reflect.TypeToken;
 
 import lombok.AllArgsConstructor;
@@ -426,6 +430,78 @@ class TempValue {
 }
 
 
+class Client {
+
+    Socket             socket;
+    OutputStreamWriter out;
+    BufferedReader     in;
+    InputStream        inputStream;
+
+    public void connect() {
+
+        try {
+            socket = new Socket("localhost", 50001);
+            socket.setSoTimeout(5000);
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        try {
+            out = new OutputStreamWriter(socket.getOutputStream());
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        try {
+            inputStream = socket.getInputStream();
+            in = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.US_ASCII));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void send(String message) {
+        try {
+            this.out.write(message + "\n");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            this.out.flush();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public String rec() {
+        try {
+            /*
+             * char[] target = new char[1000]; in.read(target); return new
+             * String(target);
+             */
+            /*
+             * int value = 0; StringBuilder strb = new StringBuilder(); while
+             * ((value = inputStream.read()) != -1) { if(value != 0)
+             * strb.append((char) value); System.out.print(value + ":" + (char)
+             * value+","); } return strb.toString();
+             */
+            return in.readLine();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
+}
+
+
 @Slf4j
 public class TestClass {
 
@@ -624,6 +700,7 @@ public class TestClass {
 
         }
     }
+
     static class MyTask implements Runnable {
         @Override
         public void run() {
@@ -657,7 +734,6 @@ public class TestClass {
         float  percentage;
     }
 
-
     static class ResultsDTO implements Comparable<ResultsDTO> {
 
         private String sNumber;
@@ -680,27 +756,62 @@ public class TestClass {
         }
     }
 
+    private static void printCount(Map<Integer, Integer> map) {
+        for (Integer key : map.keySet()) {
+            System.out.println("number: " + key + ", count: " + map.get(key));
+        }
+    }
+
+    static class SomeClass {
+        int        abc = 0;
+        static int def = 1;
+
+        static {
+            int x = 100;
+            int y = 20;
+            def = x - y + 10;
+        }
+    }
+
+    @Data
+    static class TestData {
+
+        private String firstName;
+
+        @Since(1.1)
+        private String middleName;
+
+        @Until(1.1)
+        private String lastName;
+
+    }
+
+    static class MyException extends RuntimeException {
+        public MyException(Throwable th) {
+            super(th);
+        }
+    }
+
     @SuppressWarnings("unused")
     public static void main(String args[]) throws Exception {
+        int scale = 2;
         if (true) {
-            List<Integer> list = new ArrayList<>();
-            IntStream.range(0, 3).forEach(i -> list.add(i));
-            list.parallelStream().forEach(System.out::println);
+            
+            Map<String, String> map = new HashMap<>();
+            String str = "s";
+            System.out.println(str.equals(map.get("sd")));
             return;
         }
         if (true) {
-            MyList list = new MyList();
-            list.add(new SiteEntry("abc4"));
-
-            SiteEntry[] site = { new SiteEntry("abc"), new SiteEntry("abc1"), new SiteEntry("abc2")};
-
-            list.addAll(site);
-
-            list.add(0, new SiteEntry("abc5"));
-            list.add(3, new SiteEntry("abc6"));
-            list.add(5, new SiteEntry("abc7"));
-
-            list.stream().forEach(System.out::println);
+            TestData testData = new TestData();
+            testData.setFirstName("first");
+            testData.setMiddleName("middle");
+            testData.setLastName("last");
+            Gson versionGson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().setVersion(1.1).create();
+            System.out.println(versionGson.toJson(testData));
+            return;
+        }
+        if (true) {
 
             return;
         }
@@ -745,7 +856,7 @@ public class TestClass {
         }
         if (false) {
             // int[] arr = { 10, 11, 1, 2, 12, 13, 14};
-            int[] arr = { 1, 3, 2, 6, 5, 7, 9, 8, 10, 8, 11};
+            int[] arr = { 1, scale, 2, 6, 5, 7, 9, 8, 10, 8, 11};
             Integer firstMax = null;
             Integer overallMax = null;
 
@@ -776,9 +887,10 @@ public class TestClass {
         if (false) {
             TreeNode root = new TreeNode();
             root.val = 10;
-            root.left = new TreeNode(5, new TreeNode(3, new TreeNode(3, null, null), new TreeNode(-2, null, null)),
-                    new TreeNode(2, null, new TreeNode(1, null, null)));
-            root.right = new TreeNode(-3, null, new TreeNode(11, null, null));
+            root.left =
+                    new TreeNode(5, new TreeNode(scale, new TreeNode(scale, null, null), new TreeNode(-2, null, null)),
+                            new TreeNode(2, null, new TreeNode(1, null, null)));
+            root.right = new TreeNode(-scale, null, new TreeNode(11, null, null));
 
             System.out.println(pathSum(root, 8, 0, new Stack<>()));
             return;
@@ -786,7 +898,7 @@ public class TestClass {
 
         if (true) {
             Map<String, List<Integer>> map = new HashMap<>();
-            map.put("a", Arrays.asList(5, 3, 7));
+            map.put("a", Arrays.asList(5, scale, 7));
             map.put("b", Arrays.asList(1, 5));
             map.put("c", Arrays.asList(45, 2));
             map.put("d", Arrays.asList(4, 6, 2, 34));
@@ -897,7 +1009,7 @@ public class TestClass {
             StandardEvaluationContext SEContext = new StandardEvaluationContext();
             Set<RegionShopMap> regionShopMapSet = new HashSet<>();
             regionShopMapSet.add(new RegionShopMap(1, "2"));
-            regionShopMapSet.add(new RegionShopMap(3, "4"));
+            regionShopMapSet.add(new RegionShopMap(scale, "4"));
 
             SEContext.setVariable("regionShopMapSet", regionShopMapSet);
             Expression exp = parser.parseExpression("#regionShopMapSet[1].regionId");
