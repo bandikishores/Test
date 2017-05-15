@@ -80,6 +80,7 @@ public class VelocityTemplateTest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Test {
+        private int    id;
         private String name;
         private int    value;
         private String emailId;
@@ -99,9 +100,10 @@ public class VelocityTemplateTest {
 
     private static void velocityEvaluate() {
         String query =
-                "select * from iam_user_view where email_id = ${args[0].emailId} and id in ( $args[2] ) and email_id in ($auditTool.map($args[1],\"emailId\"))";
+                "select * from iam_user_view where email_id = ${args[0].emailId} and abc in (${resp}) and id in ( $args[2] ) and email_id in ($auditTool.map($args[1],\"emailId\"))";
 
         Test test = new Test();
+        test.setId(-1);
         test.setEmailId("kishore.bandi@inmobi.com");
         test.setName("Kishore");
 
@@ -109,9 +111,12 @@ public class VelocityTemplateTest {
 
         List<Integer> numList = Arrays.asList(1, 2, 3);
 
+        List<String> strinlist = Arrays.asList("12", "23");
+
         Object[] args1 = { test, list, numList};
         VelocityContext vCtx = new VelocityContext();
         vCtx.put("args", args1);
+        vCtx.put("resp", strinlist);
         vCtx.put("auditTool", new AuditVelocityTools());
         EventCartridge vec = new EventCartridge();
         vec.addEventHandler(new VelocityTypeHandler());

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +18,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -30,7 +31,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.sun.jna.platform.win32.OaIdl.DATE;
 
 import lombok.Data;
 
@@ -60,7 +60,7 @@ class JsonTestClass {
 }
 
 
-public class JsonFileRead {
+public class JsonFileReadTest {
 
     // Temp Json - TempJsonJackson
     public static void TempJsonJackson(String[] args) throws FileNotFoundException, IOException {
@@ -77,7 +77,7 @@ public class JsonFileRead {
         Date readDate = mapper.readValue(date, Date.class);
         System.out.println(date);
     }
-    
+
     static class BooleanTypeAdapter implements JsonDeserializer<Boolean> {
         @Override
         public Boolean deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -90,20 +90,49 @@ public class JsonFileRead {
             }
         }
     }
+    
+    @Data
+    static class MyTestClass {
+        
+        private String abc = "kishore";
+        private String def = "bandi";
+        private Integer myInt = 1;
+        private Integer myInt2 = 2;
+    }
+
+    static @interface MyExclude {
+
+    }
+
+    static class CustomExclusionStrategy implements ExclusionStrategy {
+
+        @Override
+        public boolean shouldSkipField(FieldAttributes f) {
+            return f.getAnnotations().contains(MyExclude.class) ? true : false;
+        }
+
+        @Override
+        public boolean shouldSkipClass(Class<?> clazz) {
+            return false;
+        }
+
+    }
 
     // mainTemp
     public static void mainTemp(String[] args) throws FileNotFoundException, IOException {
-        
-        
-        Map<String,String> map = new HashMap<>();
+
+        MyTestClass myTestClass = new MyTestClass();
+        Gson gsonExclude = new GsonBuilder().setExclusionStrategies(new CustomExclusionStrategy()).create();
+        System.out.println(gsonExclude.toJson(myTestClass));
+
+        Map<String, String> map = new HashMap<>();
         map.put("a", "b");
         map.put("a2", "b4");
         map.put("1", "b3");
         map.put("23", "b5");
         System.out.println(new GsonBuilder().create().toJson(map));
 
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Boolean.class, new BooleanTypeAdapter()).create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Boolean.class, new BooleanTypeAdapter()).create();
 
 
 
@@ -142,7 +171,7 @@ public class JsonFileRead {
         // String json = org.apache.commons.io.IOUtils.toString(new
         // FileReader("/home/kishore/testJson.txt"));
 
-        String json = IOUtils.toString(new InputStreamReader(JsonFileRead.class.getResourceAsStream("testJson.txt")));
+        String json = IOUtils.toString(new InputStreamReader(JsonFileReadTest.class.getResourceAsStream("testJson.txt")));
 
         JSONObject jsonObject = new JSONObject(json);
         String name = jsonObject.getJSONObject("result").getString("name");

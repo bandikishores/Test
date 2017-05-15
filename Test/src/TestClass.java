@@ -15,24 +15,35 @@ import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,7 +53,6 @@ import org.apache.commons.jexl2.JexlContext;
 import org.apache.commons.jexl2.JexlEngine;
 import org.apache.commons.jexl2.MapContext;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -776,14 +786,15 @@ public class TestClass {
     @Data
     static class TestData {
 
-        private String firstName;
+        private String        firstName;
+
+        private List<Integer> abc;
 
         @Since(1.1)
-        private String middleName;
+        private String        middleName;
 
         @Until(1.1)
-        private String lastName;
-
+        private String        lastName;
     }
 
     static class MyException extends RuntimeException {
@@ -792,17 +803,115 @@ public class TestClass {
         }
     }
 
+    public static ThreadLocal<String> tl = new ThreadLocal<>();
+
+    static {
+        tl.set("abc");
+    }
+
+    // public static String a = b;
+    public static String b = TestClass.c;
+    public static String c = "abc";
+    public static String d = c;
+
+    public Consumer<? super Integer> display1() {
+        System.out.println("1");
+        return null;
+    }
+
+    public void display2() {
+        System.out.println("2");
+    }
+
+
+    private void call() {
+        Integer a =null;
+        Optional.ofNullable(a).ifPresent(display1());
+    }
+    private AtomicBoolean ab = new AtomicBoolean(false);
+
     @SuppressWarnings("unused")
     public static void main(String args[]) throws Exception {
-        int scale = 2;
-        if (true) {
+        if(true) {
+            Stack<Integer> st = new Stack<>();
+            st.push(1);
+            st.push(2);
+            st.push(3);
             
-            Map<String, String> map = new HashMap<>();
-            String str = "s";
-            System.out.println(str.equals(map.get("sd")));
+            Stack<Integer> st1 = new Stack();
+            st1.add(100);
+            
+            while(!st.isEmpty()) {
+                st1.push(st.pop());
+            }
+            st.push(4);
+            st.push(5);
+            st.push(6);
+            while(!st.isEmpty()) {
+                st1.push(st.pop());
+            }
+            
+            Deque<Integer> de = new ArrayDeque<>();
+            
+            while(!st1.isEmpty()) {
+                de.add(st1.pop());
+            }
+            
+            while (!de.isEmpty()) {
+             System.out.println(de.pop());   
+            }
+            
+            return;
+        }
+        
+        
+        System.out.println(
+                "https://bs.serving-sys.com/Serving?cn\u003ddisplay\u0026c\u003d23\u0026pl\u003dVAST\u0026pli\u003d20826077\u0026PluID\u003d0\u0026pos\u003d7945\u0026ord\u003d$IMP_CB\u0026cim\u003d1");
+        
+        System.out.println(Double.valueOf("12.23423").intValue());
+        String[] ab = { "sd", "dfe", "Zs"};
+        System.out.println(Arrays.asList(ab, "zzz"));
+        System.out.println(new Locale(Locale.ENGLISH.getLanguage(), Locale.US.getCountry()));
+        System.out.println(Locale.ENGLISH);
+        int scale = 2;
+
+        new TestClass().call();
+
+        /*System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        
+        new Thread(() -> System.out.println(tl.get())).start();
+        new Thread(() -> System.out.println(tl.get())).start();
+        new Thread(() -> System.out.println(SampleThread.tl.get())).start();
+        new Thread(() -> System.out.println(SampleThread.tl.get())).start();*/
+
+        if(true) {
+            
+        }
+
+        if (false) {
+            String string = org.apache.commons.lang3.StringUtils.abbreviateMiddle("abcxasyez", "ki", 5);
+            System.out.println(string);
+            return;
+        }
+
+        if (false) {
+            System.out.println(MessageFormat
+                    .format("Some Intent Formats requested for update does not belong to the parent Intent {0} ", 13));
             return;
         }
         if (true) {
+
+            System.out.println(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+
+            System.out.println(LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(
+                            LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()),
+                    ZoneId.systemDefault()));
+            return;
+        }
+        if (false) {
             TestData testData = new TestData();
             testData.setFirstName("first");
             testData.setMiddleName("middle");
@@ -811,7 +920,7 @@ public class TestClass {
             System.out.println(versionGson.toJson(testData));
             return;
         }
-        if (true) {
+        if (false) {
 
             return;
         }
@@ -845,7 +954,7 @@ public class TestClass {
             return;
         }
 
-        if (true) {
+        if (false) {
             String json = org.apache.commons.io.IOUtils.toString(new FileReader("/home/kishore/testJson.txt"));
 
             JSONObject jsonObject = new JSONObject(json);
@@ -896,7 +1005,7 @@ public class TestClass {
             return;
         }
 
-        if (true) {
+        if (false) {
             Map<String, List<Integer>> map = new HashMap<>();
             map.put("a", Arrays.asList(5, scale, 7));
             map.put("b", Arrays.asList(1, 5));
@@ -911,7 +1020,7 @@ public class TestClass {
 
             return;
         }
-        if (true) {
+        if (false) {
             int totalSize = 32768;
             int filterValue = 1280;
             int[] array = new int[totalSize];
@@ -1044,7 +1153,7 @@ public class TestClass {
              * System.out.println(myClass.localCache.get());
              */
         }
-        if (true) {
+        if (false) {
 
         }
         if (false) {
@@ -1078,7 +1187,7 @@ public class TestClass {
             // System.out.println(clone.a + " " + clone.b);
             // System.out.println(clone.superClass.a);
         }
-        if (false) {
+        if (true) {
             long start = System.currentTimeMillis();
             PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
                     new PoolingHttpClientConnectionManager();
@@ -1087,11 +1196,17 @@ public class TestClass {
 
             RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(3000)
                     .setConnectionRequestTimeout(3000).setSocketTimeout(10000).build();
-            CloseableHttpClient httpClient =
-                    HttpClientBuilder.create().disableAutomaticRetries().setDefaultRequestConfig(requestConfig)
-                            .setConnectionManager(poolingHttpClientConnectionManager).disableRedirectHandling().build();
+            CloseableHttpClient httpClient = HttpClientBuilder.create().disableAutomaticRetries()
+                    .setDefaultRequestConfig(requestConfig).setConnectionManager(poolingHttpClientConnectionManager)
+                    .disableRedirectHandling().useSystemProperties().build();
 
-            String url = "http://lnk8.cn/00s4Yt?idfa=&impId=$IMP_ID&ip=$USER_IP&custom=";
+            String url =
+                    "http://ad.doubleclick.net/ddm/trackimp/N6601.283670.MOBEXT/B9782952.132352330;dc_pre=CLT3vrv-i80CFYiKjwodTLkLRg;dc_trk_aid=304992518;dc_trk_cid=70973408;ord=$IMP_CB;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?";
+
+            if (args.length > 0) {
+                url = args[0];
+            }
+
             HttpGet httpGet = new HttpGet(url);
             try {
 
@@ -1102,6 +1217,7 @@ public class TestClass {
                 httpGet.setHeader(HttpHeaders.USER_AGENT, ios);
                 CloseableHttpResponse response = httpClient.execute(httpGet);
 
+                System.out.println("url" + url);
                 System.out.println("response " + response);
                 System.out.println("status " + response.getStatusLine().getStatusCode());
             } catch (Exception e) {
