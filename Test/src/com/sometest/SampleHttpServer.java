@@ -17,7 +17,7 @@ import org.apache.commons.io.IOUtils;
 public class SampleHttpServer {
 
     public static void main(String[] args) {
-        get("/", (req, res) -> {
+        get("/*", (req, res) -> {
             try {
                 String json = IOUtils.toString(
                         new FileInputStream(new File(ClassLoader.getSystemResource("response.json").getPath())));
