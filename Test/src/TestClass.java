@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.PriorityQueue;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
@@ -90,10 +91,14 @@ import com.google.gson.annotations.Since;
 import com.google.gson.annotations.Until;
 import com.google.gson.reflect.TypeToken;
 
+/* import BuilderClassTest.BuilderClassTestBuilder; */
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Data
@@ -104,6 +109,15 @@ class SiteEntry {
     public String url() {
         return url;
     }
+}
+
+
+@Builder
+@Getter
+@ToString
+class BuilderClassTest {
+    private final int firstField;
+    private int       secondField;
 }
 
 
@@ -825,49 +839,63 @@ public class TestClass {
 
 
     private void call() {
-        Integer a =null;
+        Integer a = null;
         Optional.ofNullable(a).ifPresent(display1());
     }
+
     private AtomicBoolean ab = new AtomicBoolean(false);
 
     @SuppressWarnings("unused")
     public static void main(String args[]) throws Exception {
-        if(true) {
+        if (true) {
+            Optional.ofNullable(null).orElseThrow(() -> {
+                throw new RuntimeException("Exception");
+            });
+
+
+            /*new BuilderClassTest(1, 2);
+            BuilderClassTest build = BuilderClassTest.builder().firstField(20).secondField(1).build();
+            BuilderClassTest build1 = build.builder().secondField(10).build();
+            System.out.println(build);
+            System.out.println(build1);*/
+            return;
+        }
+        if (true) {
             Stack<Integer> st = new Stack<>();
             st.push(1);
             st.push(2);
             st.push(3);
-            
+
             Stack<Integer> st1 = new Stack();
             st1.add(100);
-            
-            while(!st.isEmpty()) {
+
+            while (!st.isEmpty()) {
                 st1.push(st.pop());
             }
             st.push(4);
             st.push(5);
             st.push(6);
-            while(!st.isEmpty()) {
+            while (!st.isEmpty()) {
                 st1.push(st.pop());
             }
-            
+
             Deque<Integer> de = new ArrayDeque<>();
-            
-            while(!st1.isEmpty()) {
+
+            while (!st1.isEmpty()) {
                 de.add(st1.pop());
             }
-            
+
             while (!de.isEmpty()) {
-             System.out.println(de.pop());   
+                System.out.println(de.pop());
             }
-            
+
             return;
         }
-        
-        
+
+
         System.out.println(
                 "https://bs.serving-sys.com/Serving?cn\u003ddisplay\u0026c\u003d23\u0026pl\u003dVAST\u0026pli\u003d20826077\u0026PluID\u003d0\u0026pos\u003d7945\u0026ord\u003d$IMP_CB\u0026cim\u003d1");
-        
+
         System.out.println(Double.valueOf("12.23423").intValue());
         String[] ab = { "sd", "dfe", "Zs"};
         System.out.println(Arrays.asList(ab, "zzz"));
@@ -886,8 +914,8 @@ public class TestClass {
         new Thread(() -> System.out.println(SampleThread.tl.get())).start();
         new Thread(() -> System.out.println(SampleThread.tl.get())).start();*/
 
-        if(true) {
-            
+        if (true) {
+
         }
 
         if (false) {

@@ -1,11 +1,15 @@
 package com.sometest;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +35,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.sometest.JsonFileReadTest.MyTestClass;
 
 import lombok.Data;
 
@@ -52,11 +57,11 @@ class BooleanTypeAdapter extends TypeAdapter<Boolean> {
 
 
 @Data
-class JsonTestClass {
+class JsonTestClass<T> {
     Boolean active = new Boolean(true);
-    Integer id;
+    Integer id     = 1;
     // String test = "str";
-    // List<String> list = Arrays.asList("some");
+    List<T> list;
 }
 
 
@@ -90,13 +95,13 @@ public class JsonFileReadTest {
             }
         }
     }
-    
+
     @Data
     static class MyTestClass {
-        
-        private String abc = "kishore";
-        private String def = "bandi";
-        private Integer myInt = 1;
+
+        private String  abc    = "kishore";
+        private String  def    = "bandi";
+        private Integer myInt  = 1;
         private Integer myInt2 = 2;
     }
 
@@ -142,36 +147,70 @@ public class JsonFileReadTest {
         System.out.println(gson.fromJson("{id:12345,active:true}", JsonTestClass.class).getActive());
     }
 
+    public void bla(JsonTestClass<MyTestClass> adsfasfsad) {
+
+    }
+
+
+    static String NAME_PREFIX = "class ";
+
+    private static String getClassName(Type type) {
+        String fullName = type.toString();
+        if (fullName.startsWith(NAME_PREFIX)) return fullName.substring(NAME_PREFIX.length());
+        return fullName;
+    }
+
     // Temp Json - TempJsonGson
-    public static void TempJsonGson(String[] args) throws FileNotFoundException, IOException {
-
-
+    public static void TempJsonGson(String[] args) throws FileNotFoundException, IOException, NoSuchMethodException,
+            SecurityException, ClassNotFoundException {
         Gson gson = new GsonBuilder().create();
 
-        HashMap<String, JsonTestClass> map = new HashMap<>();
-        map.put("a", new JsonTestClass());
-        map.put("b", new JsonTestClass());
+        Method method = JsonFileReadTest.class.getMethod("bla", JsonTestClass.class);
 
-        List<JsonTestClass> list = new ArrayList<>();
-        list.add(new JsonTestClass());
-        String jsonString = gson.toJson(list);
-        List<JsonTestClass> fromJsonList = gson.fromJson(jsonString, List.class);
+        Type type = method.getGenericParameterTypes()[0];
+        /*
+        
+        System.out.println(Class.forName(getClassName(type)));
+        System.out.println(Class.forName(getClassName(innerType)));*/
 
-        List<JsonTestClass> anotherJsonListUsingTypeToken =
+        Type innerType = ((ParameterizedType) type).getActualTypeArguments()[0];
+        JsonTestClass jsonTestClass = new JsonTestClass();
+        jsonTestClass.setList(Arrays.asList(new MyTestClass(), new MyTestClass()));
+        String jsonString = gson.toJson(jsonTestClass);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        JsonTestClass<MyTestClass> jsonTestClassConverted = mapper.readValue(jsonString, JsonTestClass.class);
+        
+        // JsonTestClass<MyTestClass> jsonTestClassConverted = gson.fromJson(jsonString, type);
+        /* JsonTestClass<MyTestClass> jsonTestClassConverted =
+                gson.fromJson(jsonString, new TypeToken<JsonTestClass<MyTestClass>>() {}.getType());
+        */
+
+        /*JsonTestClass<MyTestClass> jsonTestClassConverted =
+                gson.fromJson(jsonString, TypeToken.getParameterized(type, innerType).getType());*/
+        System.out.println("Conversion successful ");
+
+        for (MyTestClass myTestClass : jsonTestClassConverted.getList()) {
+            System.out.println(myTestClass);
+        }
+
+        /*List<JsonTestClass> anotherJsonListUsingTypeToken =
                 gson.fromJson(jsonString, new TypeToken<List<JsonTestClass>>() {}.getType());
-
+        
         System.out.println(fromJsonList.get(0));
-        System.out.println(anotherJsonListUsingTypeToken.get(0));
+        System.out.println(anotherJsonListUsingTypeToken.get(0));*/
 
         // System.out.println(mapper.convertValue(new JsonTestClass(), Map.class));
     }
 
     // File Read Json Gson - FileReadJsonGson
-    public static void FileReadJson(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         // String json = org.apache.commons.io.IOUtils.toString(new
         // FileReader("/home/kishore/testJson.txt"));
-
-        String json = IOUtils.toString(new InputStreamReader(JsonFileReadTest.class.getResourceAsStream("testJson.txt")));
+        File file = new File(ClassLoader.getSystemResource("testJson.txt").getPath());
+        
+        String json =
+                IOUtils.toString(new FileInputStream(file));
 
         JSONObject jsonObject = new JSONObject(json);
         String name = jsonObject.getJSONObject("result").getString("name");
