@@ -1,11 +1,14 @@
 package com.sometest;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 import java.io.File;
 import java.io.FileInputStream;
 
 import org.apache.commons.io.IOUtils;
+
+import spark.Route;
 
 /**
  * 
@@ -17,8 +20,9 @@ import org.apache.commons.io.IOUtils;
 public class SampleHttpServer {
 
     public static void main(String[] args) {
-        get("/*", (req, res) -> {
+        Route route = (req, res) -> {
             try {
+                res.type("text/plain");
                 String json = IOUtils.toString(
                         new FileInputStream(new File(ClassLoader.getSystemResource("response.json").getPath())));
                 return json;
@@ -26,7 +30,9 @@ public class SampleHttpServer {
                 ex.printStackTrace();
                 throw ex;
             }
-        });
+        };
+        get("/*", route);
+        post("/*", route);
     }
 
 }
