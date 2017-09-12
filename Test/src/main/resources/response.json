@@ -1,29 +1,51 @@
 [
     {
-        "version": "v2",
-        "timestamp": "2017-08-21T20:00:00.000Z",
+        "version": "v1",
+        "timestamp": "2017-08-22T09:00:00.000Z",
         "event": {
-            "totalrevenue": 20.572870135307312,
+        	"totalimpressions": 0,
+            "totalrevenue": 0,
             "campaignId": "284493",
             "adIncId": "8586991"
         }
     },
     {
         "version": "v1",
-        "timestamp": "2017-08-21T20:00:00.000Z",
+        "timestamp": "2017-08-22T09:00:00.000Z",
         "event": {
-            "totalrevenue": 71.40831895172596,
+        	"totalimpressions": 0,
+            "totalrevenue": 0,
             "campaignId": "284493",
             "adIncId": "8586985"
         }
     },
     {
         "version": "v1",
-        "timestamp": "2017-08-21T20:00:00.000Z",
+        "timestamp": "2017-08-22T09:00:00.000Z",
         "event": {
-            "totalrevenue": 76.91018546745181,
-            "campaignId": "208049",
-            "adIncId": "8618704"
+        	"totalimpressions": 0,
+            "totalrevenue": 0,
+            "campaignId": "284440",
+            "adIncId": "8586810"
+        }
+    },
+    {
+        "version": "v1",
+        "timestamp": "2017-08-22T09:00:00.000Z",
+        "event": {
+        	"totalimpressions": 0,
+            "totalrevenue": 0,
+            "campaignId": "284440",
+            "adIncId": "8586809"
+        }
+    },
+    {
+        "version": "v1",
+        "timestamp": "2017-08-22T09:00:00.000Z",
+        "event": {
+            "totalrevenue": 0,
+            "campaignId": "23445345",
+            "adIncId": "93623456"
         }
     }
 ]

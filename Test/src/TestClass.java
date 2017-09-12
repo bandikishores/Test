@@ -849,12 +849,14 @@ public class TestClass {
     @SuppressWarnings("unused")
     public static void main(String args[]) throws Exception {
         if (true) {
-            DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE)
-            .appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).appendLiteral('Z').toFormatter();
-
-            System.out.println(LocalDateTime.now().format(formatter));
-            System.out.println(LocalDateTime.parse("2017-08-21T09:00:00.000Z", formatter));
-            System.out.println(LocalDateTime.parse("2017-08-21T09:00:00.000", formatter));
+            Integer in = 1;
+            synchronized (in) {
+             System.out.println("First");
+             synchronized (in) {
+                 System.out.println("Second");   
+                }
+            }
+            System.out.println("Done");
             /*new BuilderClassTest(1, 2);
             BuilderClassTest build = BuilderClassTest.builder().firstField(20).secondField(1).build();
             BuilderClassTest build1 = build.builder().secondField(10).build();
