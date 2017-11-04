@@ -1,4 +1,4 @@
-import org.apache.thrift.TException;
+/*import org.apache.thrift.TException;
 
 import com.bandi.thrift.client.ThriftClient;
 import com.bandi.thrift.data.ComplexStruct;
@@ -14,3 +14,4 @@ public class TestSimpleThrift {
 	}
 
 }
+*/

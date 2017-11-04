@@ -8,6 +8,8 @@ import java.io.UnsupportedEncodingException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -21,7 +23,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,9 +37,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
-import java.util.PriorityQueue;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -98,7 +98,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -110,6 +109,11 @@ class SiteEntry {
     public String url() {
         return url;
     }
+}
+
+
+interface ab {
+    final int asf = 9;
 }
 
 
@@ -338,7 +342,15 @@ class SuperClass extends SuperSuperClass {
 @AllArgsConstructor
 @NoArgsConstructor
 class SomeCache {
+
     int cache = 0;
+    {
+        cache = 1;
+    }
+
+    public void setCache(int value) {
+        cache = value;
+    }
 }
 
 
@@ -849,14 +861,14 @@ public class TestClass {
     @SuppressWarnings("unused")
     public static void main(String args[]) throws Exception {
         if (true) {
-            Integer in = 1;
-            synchronized (in) {
-             System.out.println("First");
-             synchronized (in) {
-                 System.out.println("Second");   
-                }
-            }
+
+            Optional<Integer> ine = Optional.empty();
+            System.out.println(ine.map(in -> 3).orElse(1));
+            System.out.println(new BigDecimal(1).divide(new BigDecimal(3), 4, RoundingMode.HALF_UP));;
             System.out.println("Done");
+
+          
+
             /*new BuilderClassTest(1, 2);
             BuilderClassTest build = BuilderClassTest.builder().firstField(20).secondField(1).build();
             BuilderClassTest build1 = build.builder().secondField(10).build();
