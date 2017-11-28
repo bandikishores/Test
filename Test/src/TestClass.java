@@ -43,6 +43,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -92,6 +93,7 @@ import com.google.gson.annotations.Since;
 import com.google.gson.annotations.Until;
 import com.google.gson.reflect.TypeToken;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 /* import BuilderClassTest.BuilderClassTestBuilder; */
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -111,9 +113,30 @@ class SiteEntry {
     }
 }
 
-
 interface ab {
     final int asf = 9;
+    
+    default public void fun() {
+        System.out.println("base");
+    }
+}
+
+interface bc {
+    final int asf = 9;
+    
+    default public void fun() {
+        System.out.println("base2");
+    }
+}
+
+class MyTest implements ab, bc {
+    final int asf = 9;
+
+    @Override
+    public void fun() {
+        // TODO Auto-generated method stub
+        ab.super.fun();
+    }
 }
 
 
@@ -860,13 +883,20 @@ public class TestClass {
 
     @SuppressWarnings("unused")
     public static void main(String args[]) throws Exception {
+        Integer integer = 1;
+        Integer integer2 = 1;
+        Integer inte3 = new Integer(1);
         if (true) {
+            
+            System.out.println("videoads/prod/[accountId]/videos/[Video-UUID]/"
+                    .replace("[accountId]", "asdfvawtfgwr")
+                    .replace("[Video-UUID]", "239872efhefwef"));
 
-            Optional<Integer> ine = Optional.empty();
-            System.out.println(ine.map(in -> 3).orElse(1));
-            System.out.println(new BigDecimal(1).divide(new BigDecimal(3), 4, RoundingMode.HALF_UP));;
-            System.out.println("Done");
-
+            System.out.println(integer == integer2);
+            System.out.println(integer == inte3);
+            Integer integer4 = 128;
+            Integer integer3 = 128;
+            System.out.println(integer4 == integer3);
           
 
             /*new BuilderClassTest(1, 2);
@@ -1149,7 +1179,7 @@ public class TestClass {
             }
 
             Integer v1 = null;
-            Integer v2 = new Integer(1);
+            Integer v2 = integer;
             if (v1 != v2) {
                 System.out.println("true " + String.valueOf(v1) + " " + String.valueOf(v2));
             } else
