@@ -29,6 +29,21 @@ class Interval {
 
 @Slf4j
 public class TestClass {
+
+
+    static interface IE<T extends Exception> {
+
+    }
+
+    static class Manager {
+
+        Map<Class<? extends Exception>, IE<? extends Exception>> map = new HashMap<>();
+
+        public <T extends Exception> void register(Class<T> klass, IE<T> obj) {
+            map.put(klass, obj);
+        }
+
+    }
     
     public static void recursion(int value) {
         if(value == 17723) {
