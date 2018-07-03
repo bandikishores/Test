@@ -59,6 +59,12 @@ public class OldTestClass {
 
 	public static void main(String[] args) throws Exception {
 		
+		Dog dog = new Dog();
+		dog.print();
+		new Animal().print();
+		
+		if(true) return;
+		
 		ATest atest = new ATest();
 		ATest btest = new ATest();
 		

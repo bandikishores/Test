@@ -12,12 +12,12 @@ singleServerConfig:
   password: null
   subscriptionsPerConnection: 1 # 5
   clientName: intent
-  address: "redis://qa1005.planet.corp.inmobi.com:8085"
+  address: "redis://dp-loc.jsvbim.ng.0001.apse1.cache.amazonaws.com:6379"
   subscriptionConnectionMinimumIdleSize: 1
   subscriptionConnectionPoolSize: 1 # 50
   connectionMinimumIdleSize: 1 # 5
   connectionPoolSize: 1 # 64
-  database: 4 # Using new redis key for Intent Server
+  database: 0 # Using new redis key for Intent Server
   dnsMonitoring: false
   dnsMonitoringInterval: 5000
 codec: !<org.redisson.codec.JsonJacksonCodec> {}
