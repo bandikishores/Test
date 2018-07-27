@@ -1,6 +1,5 @@
 package com.bandi.test;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.LinkedList;
@@ -18,11 +17,11 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
+import com.bandi.test.data.Event;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchemaGenerator;
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema;
-import com.swiggy.dp.Event;
 
 public class JacksonSchemaComparator {
 

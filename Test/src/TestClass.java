@@ -1,7 +1,9 @@
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -47,13 +49,17 @@ class Dog extends Animal {
 }
 
 class Animal {
-	 protected void print() {
+	protected void print() {
 		System.out.println("Animal");
 	}
 }
 
 @Slf4j
 public class TestClass {
+	
+	public static Animal fun(Dog asn) {
+		return null;
+	}
 
 	static interface IE<T extends Exception> {
 
@@ -78,43 +84,82 @@ public class TestClass {
 
 	static Queue<String> taskQueue = new LinkedList<>();
 	static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(2);
-	
+
 	@Builder
 	@ToString
 	public static class MyTestClass {
-		@Default private Optional<String> str = Optional.of("myClass");
+		@Default
+		private Optional<String> str = Optional.of("myClass");
 	}
+	
+	interface my1 {
+		default public void print() {
+			System.out.println("my1");
+		}
+	}
+	
+	interface my2 {
+		default public void print() {
+			System.out.println("my2");
+		}
+	}
+	
+	public static class MyTestClassExtend implements my1, my2 {
+
+		@Override
+		public void print() {
+			my1.super.print();
+		}
+		
+	}
+	
+	
 
 	public static void main(String[] args) throws InterruptedException, JsonProcessingException, IOException {
+		Animal an = fun(new Dog());
+		
+		
+		LocalDateTime timeMilli = LocalDateTime.parse("2013-11-01T18:00:04.574");
+		long epochMilliUTC = timeMilli.toInstant(ZoneOffset.UTC).toEpochMilli();
+		long epochMilliIST = timeMilli.atZone(ZoneId.of("Asia/Calcutta")).toInstant().toEpochMilli();
+		long epochMilliUTCConverted = timeMilli.atZone(ZoneId.of("Asia/Calcutta"))
+				.withZoneSameInstant(ZoneOffset.UTC.normalized()).toLocalDateTime().toInstant(ZoneOffset.UTC)
+				.toEpochMilli();
+		System.out.println(epochMilliUTC);
+		System.out.println(epochMilliIST);
+		System.out.println(epochMilliUTCConverted);
+		if (true)
+			return;
+
+		System.out.println(Double.parseDouble("+3"));
+		System.out.println((int) 'A');
 		System.out.println(ZoneId.of("Asia/Calcutta").getRules().getOffset(Instant.now()));
-		System.out.println(MessageFormat.format("Value {0} {1}", "sd","sdsf"));
-		Arrays.asList("1.0","1.1","1.2","1.11").stream().sorted().forEach(System.out::println);
-		
-		System.out.println("abc".length());
-		System.out.println("a".substring(0, "a".length() - 1).length());
-		
-		if(true) return;
-		
+		System.out.println("abcdef".substring(3, 4));
+
+		if (true)
+			return;
+
 		System.out.println("".compareTo(null));
 		Optional.ofNullable(null).orElseThrow(() -> {
 			return new RuntimeException("asd");
 		});
 		System.out.println("Executed");
-		if(true) {
+		if (true) {
 			return;
 		}
 		// int i;
 		String da = "2018-05-10T18:22:50+05:30";
-		//System.out.println(i);
+		// System.out.println(i);
 		Long l = 23234l;
 		System.out.println(l.toString());
 		System.out.println(new Date(da));
 		assert 1 != 2;
-		if(true)return;
+		if (true)
+			return;
 		System.out.println(int.class.getCanonicalName());
 		System.out.println(MyTestClass.builder().build());
 		System.out.println(MyTestClass.builder().str);
-		
+
 		List<String> sdf = null;
 		List ms = Arrays.asList();
 		myfun(ms);
@@ -124,9 +169,9 @@ public class TestClass {
 		taskQueue.add("c");
 		taskQueue.add("d");
 		taskQueue.add("e");
-		
-		Executors.newScheduledThreadPool(1).scheduleAtFixedRate(()-> {
-			
+
+		Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+
 		}, 0, 1, TimeUnit.MINUTES);
 
 		for (int i = 0; i < 10; i++) {
@@ -151,7 +196,7 @@ public class TestClass {
 
 	private static void myfun(List<Integer> ms) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public static int solve(int A, int B) {

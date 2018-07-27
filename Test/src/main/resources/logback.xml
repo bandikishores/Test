@@ -2,7 +2,6 @@
 <configuration>
 
 	<property name="DEV_HOME" value="/home/kishore/test/logs" />
-	
 	<property name="MAX_SIZE" value="5MB" />
 	<property name="MAX_HISTORY" value="4" />
 
@@ -98,6 +97,11 @@
 
 	<!-- Send logs to both console and file audit -->
 	<logger name="com.sometest" level="debug" additivity="false">
+		<appender-ref ref="INFO_LOG" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="com.bandi.test" level="debug" additivity="false">
 		<appender-ref ref="INFO_LOG" />
 		<appender-ref ref="STDOUT" />
 	</logger>
