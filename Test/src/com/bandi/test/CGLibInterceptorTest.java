@@ -10,7 +10,9 @@ import net.sf.cglib.proxy.MethodProxy;
 public class CGLibInterceptorTest {
 
     public static void main(String[] args) {
-        new ObservableBeanFactory().createObservableBean(MyTestAPI.class).printTest();;
+        MyTestAPI createObservableBean = new ObservableBeanFactory()
+        		.createObservableBean(MyTestAPI.class, new MyInterceptor());
+		createObservableBean.printTest();
     }
 
 }
@@ -22,18 +24,24 @@ class MyTestAPI {
     }
 }
 
+class CustomTestAPI extends MyTestAPI {
+    @Override
+	public void printTest() {
+        System.out.println("custom PrintTest begin");
+        super.printTest();
+        System.out.println("custom PrintTest end");
+    }
+}
 
 final class ObservableBeanFactory {
 
-    public static <T> T createObservableBean(Class<T> beanClass) {
-
-        MyInterceptor interceptor = new MyInterceptor();
+    public static <T> T createObservableBean(Class<T> beanClass, MethodInterceptor interceptor) {
 
         Enhancer e = new Enhancer();
 
         e.setSuperclass(beanClass);
 
-        e.setCallback(interceptor);
+        e.setCallbacks(new MethodInterceptor[] {interceptor});
 /*
         e.setInterfaces(new Class[] { Observable.class});*/
 

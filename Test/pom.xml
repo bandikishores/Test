@@ -21,6 +21,7 @@
 		<kafka.version>1.1.0</kafka.version>
 		<drop-wizard.version>4.0.2</drop-wizard.version>
 		<jackson.version>2.9.7</jackson.version>
+		<javaassist.version>3.26.0-GA</javaassist.version>
 	</properties>
 
 	<repositories>
@@ -31,6 +32,13 @@
 	</repositories>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javaassist.version}</version>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
