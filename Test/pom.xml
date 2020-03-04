@@ -20,7 +20,7 @@
 		<curator.version>4.0.1</curator.version>
 		<kafka.version>1.1.0</kafka.version>
 		<drop-wizard.version>4.0.2</drop-wizard.version>
-		<jackson.version>2.9.7</jackson.version>
+		<jackson.version>2.10.3</jackson.version>
 		<javaassist.version>3.26.0-GA</javaassist.version>
 	</properties>
 
