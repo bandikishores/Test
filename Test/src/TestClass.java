@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -29,14 +30,15 @@ import java.util.stream.Stream;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Base64OutputStream;
-import org.apache.hadoop.fs.Path;
 import org.json.simple.JSONObject;
+import org.slf4j.helpers.MessageFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
 
 import lombok.Builder;
 import lombok.Builder.Default;
@@ -188,11 +190,82 @@ public class TestClass {
 
 
 	}
+	
+
+	@interface PravaliAnnotation {
+		public boolean printKishore() default false;
+	}
+
+	
+	@PravaliAnnotation(printKishore = true)
+	static class Employee {
+		private String name = "Pravali";
+	}
+	@PravaliAnnotation(printKishore = false)
+	static class Employee1 {
+		private String name = "Pravali";
+	}
 
 // Mix in - 
 // TestClass.Child(super=TestClass.Parent(foo=null, bar=a), alice=a, bob=a)
 // TestClass.Child(super=TestClass.Parent(foo=a, bar=a), alice=null, bob=a)
 	public static void main(String[] args) throws InterruptedException, JsonProcessingException, IOException {
+		ImmutableList<String> possibleTexts = ImmutableList.of("aa", "bbbbbb");
+		final List<String> mutableList = new ArrayList<>(possibleTexts);
+		Collections.sort(mutableList, (s1, s2) -> Math.abs(s1.length() - s2.length()));
+		System.out.println(mutableList);
+		if (true) return;
+		
+		double sum = 0;
+		int n = 0, y = 0, count = 0, x = 1;
+		double[] a = new double[] { 1, 0, 1 };
+		double[] b = new double[a.length];
+		List<double[]> mylist = new ArrayList<>();
+		double[][] c = new double[][] { { 0, 0.66, 0.66 }, { 0.66, 0, 0.66 }, { 0, 0.66, 0 } };
+		mylist.add(0, a);
+
+		while (n >= 0 && n < 4) {
+			for (int i = 0; i < 3; i++)
+				for (int j = 0; j < a.length; j++) {
+					sum = sum + (c[i][j] * a[j]);
+					if (j == a.length - 1) {
+						if (sum > 0)
+							sum = 1;
+						else
+							sum = -1;
+						b[y] = sum;
+						y++;
+						count++;
+						sum = 0;
+					}
+
+					if (count == a.length) {
+						mylist.add(x, b);
+						x++;
+						y = 0;
+						count = 0;
+						for (int k = 0; k < a.length; k++) {
+							a[k] = b[k];
+						}
+					}
+				}
+			n++;
+		}
+
+		for (int i = 0; i < mylist.size(); i++)
+			for (int j = 0; j < a.length; j++) {
+				System.out.print(mylist.get(i)[j] + ",");
+			}
+		if (true) {
+			return;
+		}
+		System.out.println(MessageFormatter.arrayFormat("My string with a {} and another one {}", new Object[] {"s", "d"}).getMessage());
+		if(true) return;
+		Employee em = new Employee();
+		Employee1 em1 = new Employee1();
+		
+		
+		if(true) return;
 		
 		String a1 = new String("abd");
 		a1 = a1.intern();
@@ -200,13 +273,6 @@ public class TestClass {
 		System.out.println(a1 == b1);
 
 		
-		int a = 10, b = 10;
-        System.out.println(a == b);
-        Integer c = 10, d = 10;
-        System.out.println(c == d);
-        c = 127;
-        d = 127;
-        System.out.println(c == d);
 		if(true) return;
 		
 		InputStream inputStream = null;
@@ -378,7 +444,6 @@ public class TestClass {
 			return;
 		System.out.println(int.class.getCanonicalName());
 		System.out.println(MyTestClass.builder().build());
-		System.out.println(MyTestClass.builder().str);
 
 		List<String> sdf = null;
 		List ms = Arrays.asList();
