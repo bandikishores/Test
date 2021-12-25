@@ -63,7 +63,7 @@ class Interval {
 		end = e;
 	}
 }
-
+ 
 class Dog extends Animal {
 	public void myPrint() {
 		print();
@@ -210,10 +210,15 @@ public class TestClass {
 // TestClass.Child(super=TestClass.Parent(foo=null, bar=a), alice=a, bob=a)
 // TestClass.Child(super=TestClass.Parent(foo=a, bar=a), alice=null, bob=a)
 	public static void main(String[] args) throws InterruptedException, JsonProcessingException, IOException {
-		ImmutableList<String> possibleTexts = ImmutableList.of("aa", "bbbbbb");
+		ImmutableList<String> possibleTexts = ImmutableList.of("aa", "bbbbbb"); 
 		final List<String> mutableList = new ArrayList<>(possibleTexts);
 		Collections.sort(mutableList, (s1, s2) -> Math.abs(s1.length() - s2.length()));
-		System.out.println(mutableList);
+	System.out.println(mutableList);
+		
+		for (String value : possibleTexts) {
+			System.out.println(value);
+		}
+		
 		if (true) return;
 		
 		double sum = 0;
