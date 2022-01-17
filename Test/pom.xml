@@ -12,7 +12,7 @@
 		<spring.version>4.1.1.RELEASE</spring.version>
 		<logback.version>1.1.7</logback.version>
 		<jcl.slf4j.version>1.7.12</jcl.slf4j.version>
-		<lombok.version>1.16.16</lombok.version>
+		<lombok.version>1.18.20</lombok.version>
 		<apache-poi.version>3.15</apache-poi.version>
 		<spring.version>5.0.4.RELEASE</spring.version>
 		<hibernate.version>5.2.8.Final</hibernate.version>
@@ -30,9 +30,72 @@
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
 		</repository>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
+	<distributionManagement>
+		<repository>
+			<id>Central Maven repository</id>
+			<name>Central Maven repository https</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository> 
+	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>maven-https</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>centralapache</id>
+					<url>https://repo.maven.apache.org/maven2</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+	</profiles>
+
+
+
+	<!-- <pluginRepositories> <pluginRepository> <id>central</id> <url>https://repo1.maven.org/maven2</url> 
+		<snapshots> <enabled>false</enabled> </snapshots> </pluginRepository> </pluginRepositories> -->
+
 	<dependencies>
+	
+	<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk</artifactId>
+    <version>1.12.128</version>
+</dependency>
+	
 
 		<dependency>
 			<groupId>org.apache.orc</groupId>
@@ -744,13 +807,6 @@
 			<version>2.3</version>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.8</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
@@ -761,6 +817,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
