@@ -63,7 +63,7 @@ class Interval {
 		end = e;
 	}
 }
- 
+
 class Dog extends Animal {
 	public void myPrint() {
 		print();
@@ -151,56 +151,54 @@ public class TestClass {
 		String alice;
 		String bob;
 	}
-	
+
 	static class SxtArrayList03<E> {
-	    private Object[] elementData;
-	    private int size;
+		private Object[] elementData;
+		private int size;
 
-	    private static final int DEFAULT_CAPACITY = 10;
+		private static final int DEFAULT_CAPACITY = 10;
 
-	    public SxtArrayList03() {
-	        elementData = new Object[DEFAULT_CAPACITY];
-	    }
+		public SxtArrayList03() {
+			elementData = new Object[DEFAULT_CAPACITY];
+		}
 
-	    public SxtArrayList03(int capacity) {
-	        elementData = new Object[capacity];
-	    }
+		public SxtArrayList03(int capacity) {
+			elementData = new Object[capacity];
+		}
 
-	    public void add(E element) {
-	        if(size == elementData.length) {
-	        Object[] newArray = new Object[elementData.length + (elementData.length>>1)]; //10 + 10/2
-	        System.arraycopy(elementData, 0, newArray, 0, elementData.length);   
-	        elementData = newArray;
-	      }
-	        elementData[size++] = element;
-	    }
+		public void add(E element) {
+			if (size == elementData.length) {
+				Object[] newArray = new Object[elementData.length + (elementData.length >> 1)]; // 10 + 10/2
+				System.arraycopy(elementData, 0, newArray, 0, elementData.length);
+				elementData = newArray;
+			}
+			elementData[size++] = element;
+		}
 
-	    @Override
-	    public String toString() {
+		@Override
+		public String toString() {
 
-	        StringBuilder sb = new StringBuilder();
-	        sb.append("[");
-	        for(int i = 0; i < size; i++) {
-	            sb.append(elementData[i] + ",");
-	        }
+			StringBuilder sb = new StringBuilder();
+			sb.append("[");
+			for (int i = 0; i < size; i++) {
+				sb.append(elementData[i] + ",");
+			}
 
-	        sb.setCharAt(sb.length() - 1, ']'); 
-	        return sb.toString();
-	    }
-
+			sb.setCharAt(sb.length() - 1, ']');
+			return sb.toString();
+		}
 
 	}
-	
 
 	@interface PravaliAnnotation {
 		public boolean printKishore() default false;
 	}
 
-	
 	@PravaliAnnotation(printKishore = true)
 	static class Employee {
 		private String name = "Pravali";
 	}
+
 	@PravaliAnnotation(printKishore = false)
 	static class Employee1 {
 		private String name = "Pravali";
@@ -210,17 +208,19 @@ public class TestClass {
 // TestClass.Child(super=TestClass.Parent(foo=null, bar=a), alice=a, bob=a)
 // TestClass.Child(super=TestClass.Parent(foo=a, bar=a), alice=null, bob=a)
 	public static void main(String[] args) throws InterruptedException, JsonProcessingException, IOException {
-		ImmutableList<String> possibleTexts = ImmutableList.of("aa", "bbbbbb"); 
+		Thread.sleep(100000);
+		ImmutableList<String> possibleTexts = ImmutableList.of("aa", "bbbbbb");
 		final List<String> mutableList = new ArrayList<>(possibleTexts);
 		Collections.sort(mutableList, (s1, s2) -> Math.abs(s1.length() - s2.length()));
-	System.out.println(mutableList);
-		
+		System.out.println(mutableList);
+
 		for (String value : possibleTexts) {
 			System.out.println(value);
 		}
-		
-		if (true) return;
-		
+
+		if (true)
+			return;
+
 		double sum = 0;
 		int n = 0, y = 0, count = 0, x = 1;
 		double[] a = new double[] { 1, 0, 1 };
@@ -264,51 +264,54 @@ public class TestClass {
 		if (true) {
 			return;
 		}
-		System.out.println(MessageFormatter.arrayFormat("My string with a {} and another one {}", new Object[] {"s", "d"}).getMessage());
-		if(true) return;
+		System.out.println(MessageFormatter
+				.arrayFormat("My string with a {} and another one {}", new Object[] { "s", "d" }).getMessage());
+		if (true)
+			return;
 		Employee em = new Employee();
 		Employee1 em1 = new Employee1();
-		
-		
-		if(true) return;
-		
+
+		if (true)
+			return;
+
 		String a1 = new String("abd");
 		a1 = a1.intern();
 		String b1 = "abd";
 		System.out.println(a1 == b1);
 
-		
-		if(true) return;
-		
-		InputStream inputStream = null;
-	    inputStream = new FileInputStream("D:\\enlistments\\Griffin\\QLogs\\QLocalCache.1.log");
-	    byte[] buffer = new byte[8192];
-	    int bytesRead;
-	    ByteArrayOutputStream output = new ByteArrayOutputStream();
-	    Base64OutputStream output64 = new Base64OutputStream(output, true);
-	    
-	    try {
-	        while ((bytesRead = inputStream.read(buffer)) != -1) {
-	            output64.write(buffer, 0, bytesRead);
-	            //Here I am getting OutOfMemory exception
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	    output64.close();
+		if (true)
+			return;
 
-	    String attachedFile = output.toString();
-	    
-		if(true) return;
-		
+		InputStream inputStream = null;
+		inputStream = new FileInputStream("D:\\enlistments\\Griffin\\QLogs\\QLocalCache.1.log");
+		byte[] buffer = new byte[8192];
+		int bytesRead;
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		Base64OutputStream output64 = new Base64OutputStream(output, true);
+
+		try {
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				output64.write(buffer, 0, bytesRead);
+				// Here I am getting OutOfMemory exception
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		output64.close();
+
+		String attachedFile = output.toString();
+
+		if (true)
+			return;
+
 		int valueLength = 1000;
 		List<Integer> myList = new Vector<>();
 		for (int i = 0; i < valueLength; i++) {
 			myList.add(i);
-		} 
+		}
 		new Thread(() -> {
 			try {
-				for(int value : myList) {
+				for (int value : myList) {
 					if (value % 3 == 0) {
 						Thread.sleep(10);
 					}
